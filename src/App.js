@@ -1,25 +1,56 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/header'
+import Konten from './components/Kontent'
+import Navigation from './components/Navbar'
+import HomePage from './components/homepage'
+// import Login from './components/Form'
+
+import Footer from './components/footer';
+// import { Button } from 'reactstrap';
+import { Route } from 'react-router-dom';
+import LoginPage from './components/LoginPage'
+
+
 
 class App extends Component {
+  state = { password : '' }
+
+
+  // state = {user = ''}
+  // onClickBtn = () =>{
+  // this.setState({user : this.refs.tbUsername.refs.username.value  
+  // }
+
   render() {
+  //  var tempState = this.state.password
+
+    
+    
+
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Navigation />
+     
+        <div className = "container col-4"> 
+        {/* <Login /> */}
+        {/* <h1>Ini Main</h1> */}
+          {/* { <Header  text = {{propertiObj : 'valueObj'}}/> } */}
+          {/* <Header  text = "Jamaludin" number ={500}/> */}
+          {/* { <Header  text = "Anjaaay" number = {20*90}/> }/ */}
+          {/* <Konten ubahClik = {content}>
+            <p> Ini isi konten yang fleksibel </p>
+            <p>Tulis segala sesuatu disini karena disini fleksibel</p>
+          </Konten> 
+          <Button color="danger" onClick = {this.onClickBtn}>Ubah</Button> */}
+          
+          {/* <Footer /> */}
+        </div>
+        <div>
+          <Route path="/" component={HomePage} exact/>
+          <Route path="/login" component={LoginPage}/>
+        </div>
+       
       </div>
     );
   }
