@@ -9,7 +9,8 @@ import Footer from './components/footer';
 // import { Button } from 'reactstrap';
 import { Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage'
-
+import RegisterPage from './components/register'
+import Register from './components/register';
 
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
         <div>
           <Route path="/" component={HomePage} exact/>
           <Route path="/login" component={LoginPage}/>
+          <Route path="/register" component={Register}/>
         </div>
        
       </div>

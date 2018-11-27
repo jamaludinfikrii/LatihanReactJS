@@ -3,14 +3,32 @@ import {connect} from 'react-redux'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Redirect } from 'react-router-dom'
 import {onUserLogin} from '../actions'
+import Cookies from 'universal-cookie'
 
-
+const cookies = new Cookies()
 class login extends React.Component {
+    componentWillReceiveProps(newProps){
+        if(newProps.username.length > 0){
+            cookies.set('Ferguso' , newProps.username , { path: '/' })
+        }
+    }
       onClickBtn = () => {
         let user = this.refs.tbUsername.refs.username.value
         let pass = this.refs.tbpassword.refs.password.value
-        this.props.onUserLogin({user , pass}) 
+        console.log(user)
+        this.props.onUserLogin({ user , pass}) 
     }
+       renderError = () => {
+           if(this.props.error.length > 0){
+              return <p className='alert alert-danger' >{this.props.error}</p>                
+           }
+       }
+       renderButton = () => {
+           if(this.props.loading){
+              return <h2>loading...</h2>
+           }
+           return <Button color = 'primary' onClick={this.onClickBtn}>Submit</Button>
+       }
     render(){
         if(this.props.username === ''){
             return(
@@ -27,7 +45,9 @@ class login extends React.Component {
                             {/* <Label for="examplePassword">Password</Label> */}
                             <Input type="password" name="password" id="examplePassword" ref="tbpassword" innerRef="password" placeholder="password" />
                         </FormGroup>
-                            <Button color = 'primary' onClick={this.onClickBtn}>Submit</Button> 
+                        {this.renderError()}
+                        {this.renderButton()}
+                             
                             {/* <InputKu type ="text" ref = "Inputku" innerRef = "InnerKu" /> */}
                     </Form>
                     </div>
@@ -40,7 +60,7 @@ class login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {username : state.username}
+    return {username : state.auth.username , error : state.auth.error , loading : state.auth.loading}
 }
 
 export default connect(mapStateToProps, { onUserLogin })(login);

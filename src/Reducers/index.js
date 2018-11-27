@@ -4,5 +4,5 @@ import AuthReducer from './AuthReducer'
 
 export default combineReducers({
     user : () => 'JamaludinFikri',
-    username :  AuthReducer
+    auth :  AuthReducer
 })

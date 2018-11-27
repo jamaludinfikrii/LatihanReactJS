@@ -11,10 +11,16 @@ import {
  import { connect } from 'react-redux'
  
 import { Link } from 'react-router-dom';
+import { onLogOut , keepLogin } from '../actions'
+import Cookies from 'universal-cookie'
 
 
-
+const cookies = new Cookies();
 class Navigation extends React.Component {
+  onClickLogOut = () => {
+    this.props.onLogOut()
+    cookies.remove('Ferguso')
+  }
     constructor(props) {
         super(props);
     
@@ -28,6 +34,14 @@ class Navigation extends React.Component {
           isOpen: !this.state.isOpen
         });
       }
+
+      componentDidMount() {
+        const username = cookies.get('Ferguso');
+        if(username !== undefined) {
+          this.props.keepLogin(username);
+        }
+      }
+
     render(){
       if(this.props.username === ''){
         return(
@@ -41,7 +55,7 @@ class Navigation extends React.Component {
               <NavLink href="/login">Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink><Link to="/login">Register</Link></NavLink>
+              <NavLink><Link to="/register">Register</Link></NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -62,6 +76,9 @@ class Navigation extends React.Component {
           <NavItem>
             <NavLink><Link to="/login">{this.props.username}</Link></NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink><Link to="/login" onClick={this.onClickLogOut}>LogOut</Link></NavLink>
+          </NavItem>
         </Nav>
       </Collapse>
     </Navbar>
@@ -71,7 +88,7 @@ class Navigation extends React.Component {
 
     }}        
 const mapStateToProps = (state) => {
-  return { username : state.username }
+  return { username : state.auth.username }
 }
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps , {onLogOut ,keepLogin})(Navigation);
