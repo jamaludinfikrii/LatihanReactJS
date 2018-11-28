@@ -3,3 +3,4 @@ export const USER_NOT_FOUND = 'b';
 export const LOGIN_SYSTEM_ERROR = 'c'
 export const LOGIN_LOADING = 'd'
 export const LOGOUT = 'e'
+export const REGISTER_LOADING = 'f'

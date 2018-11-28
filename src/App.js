@@ -3,6 +3,7 @@ import Header from './components/header'
 import Konten from './components/Kontent'
 import Navigation from './components/Navbar'
 import HomePage from './components/homepage'
+import Produk from './components/register/ProdukList'
 // import Login from './components/Form'
 
 import Footer from './components/footer';
@@ -51,6 +52,7 @@ class App extends Component {
           <Route path="/" component={HomePage} exact/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/register" component={Register}/>
+          <Route path="/produk" component={Produk}/>
         </div>
        
       </div>

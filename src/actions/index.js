@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT} from './types'
+import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING} from './types'
 
-export const onUserLogin = ({user, password}) => { //distructuring
+export const onUserLogin = ({user, password }) => { //distructuring
                                                         
     //melakukakn proses asyncronus di action creator dilarang, makanya harus install redux-thunk sebagai middleware    
     // kemudian import di index.js ,
@@ -14,7 +14,7 @@ export const onUserLogin = ({user, password}) => { //distructuring
         axios.get('http://localhost:2000/users',{
             params: {
                 username : user, // ini adalah singkatan dari username : username, yang kiri harus sesuai dengan json dan yang kanan terserah. respon daari API selalu object ada status ada data
-                password : password // kalo get berdasarkan id return object, lihat kembali di slide
+                password // kalo get berdasarkan id return object, lihat kembali di slide
             }
         }).then((res) => {
             console.log(res)
@@ -25,7 +25,7 @@ export const onUserLogin = ({user, password}) => { //distructuring
             }
 
         }).catch((err) => {
-            dispatch({type : LOGIN_SYSTEM_ERROR})
+            dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'System Error'})
             console.log(err)
         })
     }
@@ -37,4 +37,41 @@ export const onLogOut = () => {
 
 export const keepLogin = (username) => {
     return { type : USER_LOGIN_SUCCESS , payload : username }
+}
+
+export const onRegister = ({username,email,password})=>{
+    return(dispatch)=>{
+        dispatch({type : REGISTER_LOADING})
+        if(username === ''|| email === '' || password === ''){
+            dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'Semua form harus diisi Ferguso'})            
+        }else{
+            axios.get('http://localhost:2000/users' , {
+                params : {
+                    username
+                }
+            }).then((res) => {
+                console.log(res)
+                if(res.data.length === 0){
+                    axios.post('http://localhost:2000/users' , {
+                        username, email, password
+                    }).then((res) => {
+                        dispatch({type : USER_LOGIN_SUCCESS , 
+                        payload : username
+                    })
+                        console.log(res)
+                    }).catch((err) => {
+                        dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'System Error'})
+                        
+                    })
+                }else{
+                    dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'Username Sudah dipake oleh Ferguso'})
+                }
+                     
+            }).catch((err) => {
+                dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'System Error'})
+            })
+            
+        }
+        
+    }
 }
