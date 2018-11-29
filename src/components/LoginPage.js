@@ -7,11 +7,8 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 class login extends React.Component {
-    componentWillReceiveProps(newProps){
-        if(newProps.username.length > 0){
-            cookies.set('Ferguso' , newProps.username , { path: '/' })
-        }
-    }
+    
+
       onClickBtn = () => {
         let user = this.refs.tbUsername.refs.username.value
         let pass = this.refs.tbpassword.refs.password.value
@@ -29,6 +26,11 @@ class login extends React.Component {
            }
            return <Button color = 'primary' onClick={this.onClickBtn}>Submit</Button>
        }
+       componentWillReceiveProps(newProps){
+        if(newProps.username.length > 0){
+            cookies.set('Ferguso' , newProps.username , { path: '/' })
+        }
+    }
     render(){
         if(this.props.username === ''){
             return(

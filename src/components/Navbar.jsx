@@ -35,13 +35,6 @@ class Navigation extends React.Component {
         });
       }
 
-      componentDidMount() {
-        const username = cookies.get('Ferguso');
-        if(username !== undefined) {
-          this.props.keepLogin(username);
-        }
-      }
-
     render(){
       if(this.props.username === ''){
         return(
@@ -58,7 +51,7 @@ class Navigation extends React.Component {
               <NavLink href="/login">Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink><Link to="/register">Register</Link></NavLink>
+              <NavLink href="/register">Register</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -73,6 +66,12 @@ class Navigation extends React.Component {
       <NavbarToggler onClick={this.toggle} />
       <Collapse isOpen={this.state.isOpen} navbar>
         <Nav className="ml-auto" navbar>
+        <NavItem>
+              <NavLink href="/produk">List Product</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/manage">Manage Produk</NavLink>
+            </NavItem>
           <NavItem>
             <NavLink href="/login">Hallo</NavLink>
           </NavItem>

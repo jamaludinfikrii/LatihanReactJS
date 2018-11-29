@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING} from './types'
+import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING , EDIT_DATA ,COOKIE_CHECKED} from './types'
 
 export const onUserLogin = ({user, password }) => { //distructuring
                                                         
@@ -38,6 +38,10 @@ export const onLogOut = () => {
 export const keepLogin = (username) => {
     return { type : USER_LOGIN_SUCCESS , payload : username }
 }
+export const cookieChecked = () => {
+    return { type : COOKIE_CHECKED }
+}
+
 
 export const onRegister = ({username,email,password})=>{
     return(dispatch)=>{
@@ -64,7 +68,7 @@ export const onRegister = ({username,email,password})=>{
                         
                     })
                 }else{
-                    dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'Username Sudah dipake oleh Ferguso'})
+                    dispatch({type : LOGIN_SYSTEM_ERROR , payload : 'Username Sudah ada yang Makai Cuk'})
                 }
                      
             }).catch((err) => {
@@ -74,4 +78,8 @@ export const onRegister = ({username,email,password})=>{
         }
         
     }
+}
+
+export const editClick = () =>{
+    return {type : EDIT_DATA}
 }
