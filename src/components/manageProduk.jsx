@@ -149,16 +149,16 @@ class ManageProduct extends Component {
                     <tr>
                     <td>{val.id}</td>
                     <td>
-                            <select ref="kategoriEdit">
+                            <select ref="kategoriEdit" defaultValue={val.kategori}>
                                 <option>Makanan</option>
                                 <option>Minuman</option>
                                 <option>Desert</option>
                             </select>
                     </td>
-                    <td><input type="text" ref='namaprodukEdit' placeholder={val.namaproduk}/></td>
-                    <td><input type="number" ref="hargaEdit" placeholder={val.harga}/></td>
-                    <td><input type="text" ref="deskripsiEdit" placeholder={val.deskripsi}/></td>
-                    <td><input type="text" ref="imgEdit" placeholder={val.img}/></td>
+                    <td><input type="text" ref='namaprodukEdit' defaultValue={val.namaproduk}/></td>
+                    <td><input type="number" ref="hargaEdit" defaultValue={val.harga}/></td>
+                    <td><input type="text" ref="deskripsiEdit" defaultValue={val.deskripsi}/></td>
+                    <td><input type="text" ref="imgEdit" defaultValue={val.img}/></td>
                     <td><input type="button" className="btn btn-success" value="save" onClick={this.onSaveClick} /></td>
                     <td><input type="button" className="btn btn-danger" value="cancel" onClick={this.cancelClick}/></td>
                 </tr> 
@@ -209,10 +209,10 @@ class ManageProduct extends Component {
                                 <option>Desert</option>
                             </select>
                         </td>
-                        <td> <input type="text" placeholder="Nama Produk" ref="namaprodukAdd"/></td>
-                        <td> <input type="number" placeholder="Harga Produk" ref="hargaAdd"/></td>
-                        <td> <textarea placeholder="Enter the Description" ref="deskripsiAdd"/></td>
-                        <td> <input type="text" placeholder="Image Produk" ref="imgAdd"/></td>
+                        <td> <input type="text" placeholder="Nama Produk" ref="namaprodukAdd" defaultValue=""/></td>
+                        <td> <input type="number" placeholder="Harga Produk" ref="hargaAdd" defaultValue=""/></td>
+                        <td> <textarea placeholder="Enter the Description" ref="deskripsiAdd" defaultValue=""/></td>
+                        <td> <input type="text" placeholder="Image Produk" ref="imgAdd" defaultValue=""/></td>
                         <td> <input type="button" className="btn btn-primary" value="add" onClick={this.onBtnAddClick}/></td>
                     </tfoot>
                 </table>
@@ -225,3 +225,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{editClick})(ManageProduct);
+
+
+
+// 
+// 

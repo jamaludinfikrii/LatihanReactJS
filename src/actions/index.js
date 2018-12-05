@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING , EDIT_DATA ,COOKIE_CHECKED} from './types'
+import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING , EDIT_DATA ,COOKIE_CHECKED, SELECT_PRODUK} from './types'
 
 export const onUserLogin = ({user, password }) => { //distructuring
                                                         
@@ -82,4 +82,12 @@ export const onRegister = ({username,email,password})=>{
 
 export const editClick = () =>{
     return {type : EDIT_DATA}
+}
+
+export const select_produk = (selectedProduk) => {
+    return{
+        type : SELECT_PRODUK,
+        payload :selectedProduk
+    }
+    
 }

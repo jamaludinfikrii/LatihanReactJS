@@ -17,6 +17,7 @@ import LoginPage from './components/LoginPage'
 import RegisterPage from './components/register'
 import Register from './components/register';
 import Manage from './components/manageProduk'
+import ProdukDetail from './components/produkDetail'
  
 
 
@@ -71,6 +72,7 @@ class App extends Component {
             <Route path="/register" component={Register}/>
             <Route path="/produk" component={Produk}/>
             <Route path="/manage" component={Manage}/>
+            <Route path="/produkdetail/" component={ProdukDetail}/>
           </div>
          
         </div>
