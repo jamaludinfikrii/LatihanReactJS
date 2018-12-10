@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Button,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -7,16 +8,47 @@ import {
     Nav,
     NavItem,
     NavLink,
+    DropdownItem,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu
  } from 'reactstrap';
  import { connect } from 'react-redux'
  
 import { Link } from 'react-router-dom';
 import { onLogOut , keepLogin } from '../actions'
 import Cookies from 'universal-cookie'
+import axios from 'axios'
 
 
 const cookies = new Cookies();
 class Navigation extends React.Component {
+state = {jumlah :0}
+
+componentDidMount = () => {
+  this.getApiCart()
+}
+
+getApiCart = () => {
+  axios.get('http://localhost:2000/cart', {
+    params : {
+      username : this.props.username
+    }
+  }).then((res) => {
+    console.log(res.data.length)
+    this.setState({jumlah : res.data.length})
+  })
+}
+renderCart = () => {
+  return(
+    
+      <Button href='/cart'>
+               <i class="fas fa-shopping-cart" style={{marginRight:'15px'}}></i>
+               {this.state.jumlah}
+             </Button>
+     
+  )
+}
   onClickLogOut = () => {
     this.props.onLogOut()
     cookies.remove('Ferguso')
@@ -66,20 +98,31 @@ class Navigation extends React.Component {
       <NavbarToggler onClick={this.toggle} />
       <Collapse isOpen={this.state.isOpen} navbar>
         <Nav className="ml-auto" navbar>
-        <NavItem>
-              <NavLink href="/produk">List Product</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/manage">Manage Produk</NavLink>
-            </NavItem>
           <NavItem>
-            <NavLink href="/login">Hallo</NavLink>
+            <NavLink >{this.props.username.toUpperCase()}</NavLink>
+          </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  MENU
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem href="/manage">
+                    Manage Product
+                  </DropdownItem>
+                  <DropdownItem   href="/produk">
+                    List Produk
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+          <NavItem>
+            <NavLink href="/login" onClick={this.onClickLogOut}>LOG OUT</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink><Link to="/login">{this.props.username}</Link></NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink><Link to="/login" onClick={this.onClickLogOut}>LogOut</Link></NavLink>
+            {this.renderCart()}
           </NavItem>
         </Nav>
       </Collapse>
@@ -90,7 +133,8 @@ class Navigation extends React.Component {
 
     }}        
 const mapStateToProps = (state) => {
-  return { username : state.auth.username }
+  return { username : state.auth.username,
+            cart : state.auth.jumlahCart }
 }
 
 export default connect(mapStateToProps , {onLogOut ,keepLogin})(Navigation);

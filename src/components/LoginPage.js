@@ -29,6 +29,7 @@ class login extends React.Component {
        componentWillReceiveProps(newProps){
         if(newProps.username.length > 0){
             cookies.set('Ferguso' , newProps.username , { path: '/' })
+            cookies.set('id' , newProps.id , {path : '/'})
         }
     }
     render(){
@@ -62,7 +63,7 @@ class login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {username : state.auth.username , error : state.auth.error , loading : state.auth.loading}
+    return {username : state.auth.username , error : state.auth.error , loading : state.auth.loading , id : state.auth.user_id}
 }
 
 export default connect(mapStateToProps, { onUserLogin })(login);

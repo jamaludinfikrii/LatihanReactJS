@@ -18,6 +18,7 @@ import RegisterPage from './components/register'
 import Register from './components/register';
 import Manage from './components/manageProduk'
 import ProdukDetail from './components/produkDetail'
+import Cart from './components/cart'
  
 
 
@@ -34,6 +35,8 @@ class App extends Component {
     if(username !== undefined) {
         this.props.keepLogin(username);
     }
+    
+
     else {
       this.props.cookieChecked();
     }
@@ -73,6 +76,7 @@ class App extends Component {
             <Route path="/produk" component={Produk}/>
             <Route path="/manage" component={Manage}/>
             <Route path="/produkdetail/" component={ProdukDetail}/>
+            <Route path="/cart" component={Cart}/>
           </div>
          
         </div>

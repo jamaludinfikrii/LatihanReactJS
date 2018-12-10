@@ -1,5 +1,5 @@
-import { LOGIN_SYSTEM_ERROR, USER_LOGIN_SUCCESS , USER_NOT_FOUND ,LOGIN_LOADING , LOGOUT, REGISTER_LOADING, EDIT_DATA ,COOKIE_CHECKED} from '../actions/types'
-const INITIAL_STATE = {username : '' , error : '' , loading : false , cookie : false , edit : false}
+import { LOGIN_SYSTEM_ERROR, USER_LOGIN_SUCCESS , USER_NOT_FOUND ,LOGIN_LOADING , LOGOUT, REGISTER_LOADING, EDIT_DATA ,COOKIE_CHECKED , PLUS_CART} from '../actions/types'
+const INITIAL_STATE = {username : '' , user_id : 0 ,  error : '' , loading : false , cookie : false , edit : false , jumlahCart : 0 ,}
 
 export default (state = INITIAL_STATE , action) => {
     switch(action.type){
@@ -19,6 +19,8 @@ export default (state = INITIAL_STATE , action) => {
             return {...INITIAL_STATE , cookie : true}
         case EDIT_DATA:
             return{...state , edit : true}
+        case PLUS_CART:
+            return{...state , jumlahCart : action.payload}    
         default :
             return state
     }

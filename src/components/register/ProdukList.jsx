@@ -16,7 +16,7 @@ var size = 4
 var check = true
 class ProdukList extends React.Component{
     state = {listProduk : [] , searchData : []}
-
+ 
     componentDidMount(){
         axios.get('http://localhost:2000/produk')
             .then((data) => {
@@ -40,7 +40,7 @@ class ProdukList extends React.Component{
           }
           total -= size
             return(
-                <ListMap list={val} size={size}/>
+                <ListMap list={val} size={size} />
             )
         })
         return listJSXProduk;
