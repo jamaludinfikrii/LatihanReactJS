@@ -2,23 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom' //untuk mengatasi masalah cookie yang tidak bisa berubah ubah page, kalau pake connect
 //terus ada route, harus ada komponen withRouter
-import Header from './components/header'
-import Konten from './components/Kontent'
+// import Header from './components/header'
+// import Konten from './components/Kontent'
 import Navigation from './components/Navbar'
 import HomePage from './components/homepage'
-import Produk from './components/register/ProdukList'
+import Produk from './components/ProdukList'
 // import Login from './components/Form'
 import Cookies from 'universal-cookie'
 import { keepLogin , cookieChecked} from './actions'
-import Footer from './components/footer';
+// import Footer from './components/footer';
 // import { Button } from 'reactstrap';
 import { Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage'
-import RegisterPage from './components/register'
+// import RegisterPage from './components/register'
 import Register from './components/register';
 import Manage from './components/manageProduk'
 import ProdukDetail from './components/produkDetail'
 import Cart from './components/cart'
+import History from './components/history'
+import HistoryDetail from './components/historyDetail'
  
 
 
@@ -77,6 +79,8 @@ class App extends Component {
             <Route path="/manage" component={Manage}/>
             <Route path="/produkdetail/" component={ProdukDetail}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/history" component={History}/>
+            <Route path="/historydetail/" component={HistoryDetail}/>          
           </div>
          
         </div>

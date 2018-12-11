@@ -105,7 +105,7 @@ class ManageProduct extends Component {
     //         return(
     //             <tr>
     //             <td>${id}</td>
-    //             <td><select>
+    //             <t/d><select>
     //                     <option>Makanan</option>
     //                     <option>Minuman</option>
     //                     <option>Desert</option>

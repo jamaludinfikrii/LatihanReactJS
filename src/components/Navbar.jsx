@@ -25,9 +25,12 @@ const cookies = new Cookies();
 class Navigation extends React.Component {
 state = {jumlah :0}
 
-componentDidMount = () => {
-  this.getApiCart()
-}
+  // componentWillUpdate = () => {
+  //   this.getApiCart()
+  // }
+  componentDidMount = () => {
+    this.getApiCart()
+  }
 
 getApiCart = () => {
   axios.get('http://localhost:2000/cart', {
@@ -35,7 +38,6 @@ getApiCart = () => {
       username : this.props.username
     }
   }).then((res) => {
-    console.log(res.data.length)
     this.setState({jumlah : res.data.length})
   })
 }
@@ -77,13 +79,13 @@ renderCart = () => {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/produk">List Product</NavLink>
+              <NavLink href="/produk">LIST PRODUK</NavLink>
             </NavItem>  
             <NavItem>
-              <NavLink href="/login">Login</NavLink>
+              <NavLink href="/login">LOGIN</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/register">Register</NavLink>
+              <NavLink href="/register">REGISTER</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -107,14 +109,14 @@ renderCart = () => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem href="/manage">
-                    Manage Product
+                    MANAGE PRODUK
                   </DropdownItem>
                   <DropdownItem   href="/produk">
-                    List Produk
+                    LIST PRODUK
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                  <DropdownItem href='/history'>
+                    HISTORI TRANSAKSI
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

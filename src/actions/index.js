@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS , LOGIN_LOADING , LOGOUT , REGISTER_LOADING , EDIT_DATA ,COOKIE_CHECKED, SELECT_PRODUK , PLUS_CART} from './types'
+import { LOGIN_SYSTEM_ERROR, USER_NOT_FOUND, USER_LOGIN_SUCCESS ,SELECT_HISTORY ,LOGIN_LOADING , LOGOUT , REGISTER_LOADING , EDIT_DATA ,COOKIE_CHECKED, SELECT_PRODUK , PLUS_CART} from './types'
 
 export const onUserLogin = ({user, password }) => { //distructuring
                                                         
@@ -95,5 +95,12 @@ export const select_produk = (selectedProduk) => {
 export const tambahCart = () => {
     return{
         type: PLUS_CART 
+    }
+}
+
+export const select_history = (selectedHistory) => {
+    return{
+        type: SELECT_HISTORY,
+        payload : selectedHistory
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import '../../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/css/agency.css'
-import '../../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/vendor/fontawesome-free/css/fontawesome.min.css'
-import '../../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/vendor/fontawesome-free/css/all.css'
+import '../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/css/agency.css'
+import '../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/vendor/fontawesome-free/css/fontawesome.min.css'
+import '../support/startbootstrap-agency-gh-pages/startbootstrap-agency-gh-pages/vendor/fontawesome-free/css/all.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -10,7 +10,7 @@ import Cookies from 'universal-cookie'
 import { Input , Form , FormGroup } from 'reactstrap'
 
 const marRight = {marginRight: '20px'}
-const cookies = new Cookies
+const cookies = new Cookies()
 var total = 12
 var size = 4
 var check = true
